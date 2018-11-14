@@ -34,7 +34,7 @@ RUN apt-get update && apt-get install -y \
 RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
   apt-get install -y nodejs
 
-RUN git clone https://github.com/grpc/grpc-web /github/grpc-web-base
+RUN git clone https://github.com/etzJohn/grpc-web /github/grpc-web-base
 
 RUN cd /github/grpc-web-base && \
   ./scripts/init_submodules.sh

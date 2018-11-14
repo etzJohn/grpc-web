@@ -12,25 +12,25 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM grpcweb/prereqs
+FROM etzJohn/grpcweb/prereqs
 
-COPY . /github/grpc-web
+COPY . /github/etzJohn/grpc-web
 
-RUN cd /github/grpc-web && \
+RUN cd /github/etzJohn/grpc-web && \
   git checkout . && \
   rm -rf third_party && \
   git checkout third_party && \
   git clean -f -d -x && \
   ./scripts/init_submodules.sh
 
-RUN cd /github/grpc-web && \
+RUN cd /github/etzJohn/grpc-web && \
   make install-plugin
 
-RUN cd /github/grpc-web/packages/grpc-web && \
+RUN cd /github/etzJohn/grpc-web/packages/grpc-web && \
   npm install && \
   npm run build && \
   npm link
 
-RUN cp /github/grpc-web/net/grpc/gateway/examples/echo/nginx_simple.conf \
+RUN cp /github/etzJohn/grpc-web/net/grpc/gateway/examples/helloworld/nginx_simple.conf \
   /etc/nginx/nginx.conf && \
   mkdir -p /var/www/html/dist
