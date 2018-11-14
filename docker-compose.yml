@@ -8,7 +8,7 @@ services:
   common:
     build:
       context: ./
-      dockerfile: ./net/grpc/gateway/docker/common/Dockerfile
+      dockerfile: ./net/grpc-web/gateway/docker/common/Dockerfile
     depends_on:
       - prereqs
     image: grpcweb/common
