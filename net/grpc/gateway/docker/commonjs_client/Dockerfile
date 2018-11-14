@@ -14,20 +14,11 @@
 
 FROM grpcweb/common
 
-ARG EXAMPLE_DIR=/github/grpc-web/net/grpc/gateway/examples/echo
+ARG EXAMPLE_DIR=/github/grpc-web/net/grpc/gateway/examples/helloworld
 
-RUN protoc -I=$EXAMPLE_DIR echo.proto \
---js_out=import_style=commonjs:\
-$EXAMPLE_DIR/commonjs-example \
---grpc-web_out=import_style=commonjs,mode=grpcwebtext:\
-$EXAMPLE_DIR/commonjs-example
-
-RUN cd $EXAMPLE_DIR/commonjs-example && \
-  npm install && \
-  npm link grpc-web && \
-  npx webpack && \
-  cp echotest.html /var/www/html && \
-  cp dist/main.js /var/www/html/dist
+RUN protoc -I=$EXAMPLE_DIR helloworld.proto \
+  --js_out=import_style=commonjs:. \
+  --grpc-web_out=import_style=commonjs,mode=grpcwebtext:.
 
 EXPOSE 8081
 CMD ["nginx"]
